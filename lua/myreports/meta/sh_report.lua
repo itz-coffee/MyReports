@@ -14,11 +14,11 @@ function myreports.New(author, text)
     }, REPORT)
 end
 
-AccessorFunc(REPORT, "_author", "Author")
+AccessorFunc(REPORT, "_author", "Author", FORCE_NUMBER)
 AccessorFunc(REPORT, "_messages", "Messages")
 AccessorFunc(REPORT, "_id", "ID", FORCE_NUMBER)
 AccessorFunc(REPORT, "_closed", "Closed", FORCE_BOOL)
-AccessorFunc(REPORT, "_claimer", "Claimer")
+AccessorFunc(REPORT, "_claimer", "Claimer", FORCE_NUMBER)
 
 function REPORT:GetAuthor()
     return Player(self._author)

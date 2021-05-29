@@ -9,8 +9,8 @@ function myreports.NewMessage(author, text)
     }, MESSAGE)
 end
 
-AccessorFunc(MESSAGE, "_author", "Author")
-AccessorFunc(MESSAGE, "_text", "Text")
+AccessorFunc(MESSAGE, "_author", "Author", FORCE_NUMBER)
+AccessorFunc(MESSAGE, "_text", "Text", FORCE_STRING)
 
 function MESSAGE:GetAuthor()
     return Player(self._author)
