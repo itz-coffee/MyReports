@@ -81,7 +81,7 @@ function myreports.Update(client, length, compressed)
     local messages = report:GetMessages()
 
     for ID, message in pairs(messages) do
-        messages[ID] = setmetatable(messages, FindMetaTable("MyMessage"))
+        messages[ID] = setmetatable(message, FindMetaTable("MyMessage"))
     end
 
     report:SetMessages(messages)
