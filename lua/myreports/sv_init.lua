@@ -74,9 +74,30 @@ function myreports.Update(client, length, compressed)
     local report = util.JSONToTable(util.Decompress(compressed))
     report = setmetatable(report, FindMetaTable("MyReport"))
 
-    for ID, message in pairs(report:GetMessages()) do
-        report._messages[ID] = setmetatable(report._messages[ID], FindMetaTable("MyMessage"))
+    if not client:IsAdmin() and client ~= report:GetAuthor() then
+        return
     end
 
-    myreports.data[report:GetID()] = report
+    local messages = report:GetMessages()
+
+    for ID, message in pairs(messages) do
+        messages[ID] = setmetatable(messages, FindMetaTable("MyMessage"))
+    end
+
+    report:SetMessages(messages)
+
+    local original = myreports.data[report:GetID()]
+    local author = report:GetAuthor()
+
+    myreports.data[report:GetID()] = report:GetClosed() and nil or report
+
+    if not IsValid(author) or client == author then return end
+
+    if report:GetClosed() then
+        author:ChatPrint("[REPORT] Your report has been closed by " .. client:Name())
+    elseif not original:GetClaimer() and report:GetClaimer() then
+        author:ChatPrint("[REPORT] Your report has been claimed by " .. client:Name())
+    else
+        author:ChatPrint("[REPORT] Your report has a new reply from" .. client:Name())
+    end
 end
