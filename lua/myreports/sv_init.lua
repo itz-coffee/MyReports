@@ -98,6 +98,6 @@ function myreports.Update(client, length, compressed)
     elseif not original:GetClaimer() and report:GetClaimer() then
         author:ChatPrint("[REPORT] Your report has been claimed by " .. client:Name())
     else
-        author:ChatPrint("[REPORT] Your report has a new reply from" .. client:Name())
+        author:ChatPrint("[REPORT] Your report has a new reply from " .. client:Name())
     end
 end
