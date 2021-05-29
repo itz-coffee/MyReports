@@ -17,5 +17,5 @@ function MESSAGE:GetAuthor()
 end
 
 function MESSAGE:__tostring()
-    return "message[" .. self:GetID() .. "]"
+    return "message[" .. self:GetAuthor()  .. " - " .. self:GetText() .. "]"
 end
